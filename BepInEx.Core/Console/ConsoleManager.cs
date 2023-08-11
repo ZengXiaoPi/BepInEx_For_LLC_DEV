@@ -33,7 +33,7 @@ public static class ConsoleManager
 
     public static readonly ConfigEntry<bool> ConfigPreventClose = ConfigFile.CoreConfig.Bind(
      "Logging.Console", "PreventClose",
-     false,
+     true,
      "If enabled, will prevent closing the console (either by deleting the close button or in other platform-specific way).");
 
     public static readonly ConfigEntry<bool> ConfigConsoleShiftJis = ConfigFile.CoreConfig.Bind(

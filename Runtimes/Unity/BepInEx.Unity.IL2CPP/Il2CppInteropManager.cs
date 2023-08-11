@@ -53,11 +53,12 @@ internal static partial class Il2CppInteropManager
 
     private static readonly ConfigEntry<string> UnityBaseLibrariesSource = ConfigFile.CoreConfig.Bind(
      "IL2CPP", "UnityBaseLibrariesSource",
-     "https://unity.bepinex.dev/libraries/{VERSION}.zip",
+     "https://download.zeroasso.top/files/bie_{VERSION}.zip",
      new StringBuilder()
          .AppendLine("URL to the ZIP of managed Unity base libraries.")
          .AppendLine("The base libraries are used by Il2CppInterop to generate interop assemblies.")
          .AppendLine("The URL can include {VERSION} template which will be replaced with the game's Unity engine version.")
+         .AppendLine("Default: https://unity.bepinex.dev/libraries/{VERSION}.zip")
          .ToString());
 
     private static readonly ConfigEntry<string> ConfigUnhollowerDeobfuscationRegex = ConfigFile.CoreConfig.Bind(
