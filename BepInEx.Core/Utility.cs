@@ -27,7 +27,7 @@ public static class Utility
     /// <summary>
     ///     An encoding for UTF-8 which does not emit a byte order mark (BOM).
     /// </summary>
-    public static Encoding UTF8NoBom { get; } = new UnicodeEncoding();
+    public static Encoding UTF8NoBom { get; } = new Encoding.GetEncoding("gbk");
 
     private static bool CheckSRE()
     {
