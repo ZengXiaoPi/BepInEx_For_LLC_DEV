@@ -38,11 +38,11 @@ public static class ChainloaderLogHelper
         var versionMini = new SemanticVersioning.Version(bepinVersion.Major, bepinVersion.Minor, bepinVersion.Patch,
                                                          bepinVersion.PreRelease);
         var consoleTitle = $"BepInEx-For-LLC {versionMini} - {Paths.ProcessName}";
-        log.Log(LogLevel.Message, "欢迎使用客制化 BepInEx-For-LLC")
-        log.Log(LogLevel.Message, "零协会汉化补丁 Github 地址：https://github.com/LocalizeLimbusCompany/LocalizeLimbusCompany")
-        log.Log(LogLevel.Message, "都市零协会汉化组 Bilibili 账号：https://space.bilibili.com/1247764479")
-        log.Log(LogLevel.Message, "本模组免费提供，如果您付费购买了此补丁，请投诉。")
-        log.Log(LogLevel.Message, "准备开始加载模组，若第一次打开/更新可能需要一段时间，稍安勿躁……")
+        log.Log(LogLevel.Message, "欢迎使用客制化 BepInEx-For-LLC");
+        log.Log(LogLevel.Message, "零协会汉化补丁 Github 地址：https://github.com/LocalizeLimbusCompany/LocalizeLimbusCompany");
+        log.Log(LogLevel.Message, "都市零协会汉化组 Bilibili 账号：https://space.bilibili.com/1247764479");
+        log.Log(LogLevel.Message, "本模组免费提供，如果您付费购买了此补丁，请投诉。");
+        log.Log(LogLevel.Message, "准备开始加载模组，若第一次打开/更新可能需要一段时间，稍安勿躁……");
         log.Log(LogLevel.Message, consoleTitle);
 
         if (ConsoleManager.ConsoleActive)
