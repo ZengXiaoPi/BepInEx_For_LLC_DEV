@@ -25,6 +25,7 @@ public static class Preloader
     {
         try
         {
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
             HarmonyBackendFix.Initialize();
             ConsoleSetOutFix.Apply();
             UnityInfo.Initialize(Paths.ExecutablePath, Paths.GameDataPath);
