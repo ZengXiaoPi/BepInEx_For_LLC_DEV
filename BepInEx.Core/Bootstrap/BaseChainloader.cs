@@ -157,7 +157,7 @@ public abstract class BaseChainloader<TPlugin>
 
         _initialized = true;
 
-        Logger.Log(LogLevel.Message, "Chainloader initialized");
+        Logger.Log(LogLevel.Message, "Chainloader 已加载成功");
     }
 
     protected virtual void InitializeLoggers()
@@ -313,7 +313,7 @@ public abstract class BaseChainloader<TPlugin>
         try
         {
             var plugins = DiscoverPlugins();
-            Logger.Log(LogLevel.Info, $"{plugins.Count} plugin{(plugins.Count == 1 ? "" : "s")} to load");
+            Logger.Log(LogLevel.Info, $"共有 {plugins.Count} 个插件被加载");
             LoadPlugins(plugins);
             Finished?.Invoke();
         }
@@ -325,10 +325,10 @@ public abstract class BaseChainloader<TPlugin>
             }
             catch { }
 
-            Logger.Log(LogLevel.Error, $"Error occurred loading plugins: {ex}");
+            Logger.Log(LogLevel.Error, $"加载插件时出现了意外！ {ex}");
         }
 
-        Logger.Log(LogLevel.Message, "Chainloader startup complete");
+        Logger.Log(LogLevel.Message, "Chainloader 启动完成");
     }
 
     private IList<PluginInfo> LoadPlugins(IList<PluginInfo> plugins)
@@ -381,7 +381,7 @@ public abstract class BaseChainloader<TPlugin>
             if (dependsOnInvalidPlugin)
             {
                 var message =
-                    $"Skipping [{plugin}] because it has a dependency that was not loaded. See previous errors for details.";
+                    $"跳过加载 [{plugin}] ，因为缺少依赖文件。请查看错误信息";
                 DependencyErrors.Add(message);
                 Logger.Log(LogLevel.Warning, message);
                 continue;
@@ -389,7 +389,7 @@ public abstract class BaseChainloader<TPlugin>
 
             if (missingDependencies.Count != 0)
             {
-                var message = $@"Could not load [{plugin}] because it has missing dependencies: {
+                var message = $@"无法加载 [{plugin}] ，因为缺少了依赖文件！尝试重新安装？ {
                     string.Join(", ", missingDependencies.Select(s => s.VersionRange == null ? s.DependencyGUID : $"{s.DependencyGUID} ({s.VersionRange})").ToArray())
                 }";
                 DependencyErrors.Add(message);
@@ -401,7 +401,7 @@ public abstract class BaseChainloader<TPlugin>
 
             try
             {
-                Logger.Log(LogLevel.Info, $"Loading [{plugin}]");
+                Logger.Log(LogLevel.Info, $"正在加载 [{plugin}]");
 
                 if (!loadedAssemblies.TryGetValue(plugin.Location, out var ass))
                     loadedAssemblies[plugin.Location] = ass = Assembly.LoadFrom(plugin.Location);
@@ -419,7 +419,7 @@ public abstract class BaseChainloader<TPlugin>
                 Plugins.Remove(plugin.Metadata.GUID);
 
                 Logger.Log(LogLevel.Error,
-                           $"Error loading [{plugin}]: {(ex is ReflectionTypeLoadException re ? TypeLoader.TypeLoadExceptionToString(re) : ex.ToString())}");
+                           $"加载 [{plugin}] 出现错误: {(ex is ReflectionTypeLoadException re ? TypeLoader.TypeLoadExceptionToString(re) : ex.ToString())}");
             }
         }
 

@@ -44,9 +44,9 @@ public static class Preloader
 
             ChainloaderLogHelper.PrintLogInfo(Log);
 
-            Logger.Log(LogLevel.Info, $"Running under Unity {UnityInfo.Version}");
-            Logger.Log(LogLevel.Info, $"Runtime version: {Environment.Version}");
-            Logger.Log(LogLevel.Info, $"Runtime information: {RuntimeInformation.FrameworkDescription}");
+            Logger.Log(LogLevel.Info, $"在 Unity {UnityInfo.Version} 下运行");
+            Logger.Log(LogLevel.Info, $".NET 运行库版本 {Environment.Version}");
+            Logger.Log(LogLevel.Info, $".NET 运行库信息 {RuntimeInformation.FrameworkDescription}");
 
             Logger.Log(LogLevel.Debug, $"Game executable path: {Paths.ExecutablePath}");
             Logger.Log(LogLevel.Debug, $"Interop assembly directory: {Il2CppInteropManager.IL2CPPInteropAssemblyPath}");
@@ -69,11 +69,11 @@ public static class Preloader
             {
                 assemblyPatcher.AddPatchersFromDirectory(Paths.PatcherPluginPath);
 
-                Log.LogInfo($"{assemblyPatcher.PatcherContext.PatcherPlugins.Count} patcher plugin{(assemblyPatcher.PatcherContext.PatcherPlugins.Count == 1 ? "" : "s")} loaded");
+                Log.LogInfo($"加载了 {assemblyPatcher.PatcherContext.PatcherPlugins.Count} 个补丁插件");
 
                 assemblyPatcher.LoadAssemblyDirectories(Il2CppInteropManager.IL2CPPInteropAssemblyPath);
 
-                Log.LogInfo($"{assemblyPatcher.PatcherContext.PatcherPlugins.Count} assemblies discovered");
+                Log.LogInfo($"发现了 {assemblyPatcher.PatcherContext.PatcherPlugins.Count} 个程序集");
 
                 assemblyPatcher.PatchAndLoad();
             }
